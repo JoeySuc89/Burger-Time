@@ -1,15 +1,16 @@
 $(function() {
   $("body").on("click", ".burger-eaten", function(event) {
-    console.log($(this).attr("data-id"));
-    console.log($(this).attr("data-justEaten"));
+    // console.log($(this).attr("data-id"));
+    // console.log($(this).attr("data-justEaten"));
     var id = $(this).data("id");
-    var justEaten = $(this).data("justEaten");
-    console.log(id)
+    var justEaten = $(this).attr("data-justEaten");
+    console.log(id);
+    console.log(justEaten);
     var consumedState = {
-      devoured: justEaten
+      devoured: '1'
     };
 
-    $.ajax("api/burgers/" + id, {
+    $.ajax("/api/burgers/"+id, {
       type: "PUT",
       data: consumedState
     }).then(
@@ -24,7 +25,7 @@ $(function() {
     event.preventDefault();
 
     var newBurger = {
-      name: $("#bg").val().trim(),
+      burger_name: $("#bg").val().trim(),
       devoured: $("[name=devoured]:checked").val()
     };
 
